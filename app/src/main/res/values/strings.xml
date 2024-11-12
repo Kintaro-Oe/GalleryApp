@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Gallery</string>
+    <string name="previous">&lt;  Previous</string>
+    <string name="next">Next  &gt;</string>
+    <string name="header">Gallery Montrei</string>
+    <string name="artwork_1_title">A cup of coffee sitting on a table</string>
+    <string name="artwork_1_artist">Fotografía de Alimentos</string>
+    <string name="artwork_1_year">2024</string>
+    <string name="artwork_2_title">A room with a table and chairs in it</string>
+    <string name="artwork_2_artist">Kouji Tsuru</string>
+    <string name="artwork_2_year">2023</string>
+</resources>
