@@ -8,5 +8,6 @@ Also experimented with:
 
 Screenshots
 ---------------
-<img src="img/Screenshot_1.png" width="300" height="650" />
-<img src="img/Screenshot_2.png" width="300" height="650" />
+<img src="img/Screenshot_1.png" width="300" height="635" />
+<img src="img/Screenshot_2.png" width="300" height="635" />
+<img src="img/Screenshot_3.png" width="699" height="459" />

@@ -97,6 +97,16 @@ fun GalleryApp(artworks: List<ArtworkIds>, modifier: Modifier = Modifier) {
         Column {
             var index by remember { mutableIntStateOf(0) }
 
+            Text(
+                text = stringResource(R.string.header),
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                fontSize = 36.sp,
+                fontFamily = FontFamily.Cursive
+            )
             Column(
                 modifier = modifier
                     .padding(horizontal = 16.dp)
@@ -104,17 +114,11 @@ fun GalleryApp(artworks: List<ArtworkIds>, modifier: Modifier = Modifier) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = stringResource(R.string.header),
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 36.sp,
-                    fontFamily = FontFamily.Cursive
-                )
-                Artwork(
+                ArtworkImage(
                     imageResourceID = artworks[index].imageResourceID,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                ArtworkDescription(
                     titleResourceID = artworks[index].titleResourceID,
                     artistResourceID = artworks[index].artistResourceID,
                     yearResourceID = artworks[index].yearResourceID,
@@ -130,24 +134,6 @@ fun GalleryApp(artworks: List<ArtworkIds>, modifier: Modifier = Modifier) {
                 Modifier.fillMaxWidth())
         }
     }
-}
-
-@Composable
-fun Artwork(
-    imageResourceID: Int,
-    titleResourceID: Int,
-    artistResourceID: Int,
-    yearResourceID: Int,
-) {
-    ArtworkImage(
-        imageResourceID = imageResourceID,
-        modifier = Modifier.fillMaxWidth()
-    )
-    ArtworkDescription(
-        titleResourceID = titleResourceID,
-        artistResourceID = artistResourceID,
-        yearResourceID = yearResourceID,
-    )
 }
 
 @Composable
