@@ -61,6 +61,12 @@ data class ArtworkIds(
 
 val artworks = listOf(
     ArtworkIds(
+        imageResourceID = R.drawable.artwork_0,
+        titleResourceID = R.string.artwork_0_title,
+        artistResourceID = R.string.artwork_0_artist,
+        yearResourceID = R.string.artwork_0_year,
+    ),
+    ArtworkIds(
         imageResourceID = R.drawable.artwork_1,
         titleResourceID = R.string.artwork_1_title,
         artistResourceID = R.string.artwork_1_artist,
@@ -71,6 +77,12 @@ val artworks = listOf(
         titleResourceID = R.string.artwork_2_title,
         artistResourceID = R.string.artwork_2_artist,
         yearResourceID = R.string.artwork_2_year,
+    ),
+    ArtworkIds(
+        imageResourceID = R.drawable.artwork_3,
+        titleResourceID = R.string.artwork_3_title,
+        artistResourceID = R.string.artwork_3_artist,
+        yearResourceID = R.string.artwork_3_year,
     )
 )
 
@@ -109,8 +121,12 @@ fun GalleryApp(artworks: List<ArtworkIds>, modifier: Modifier = Modifier) {
                 )
             }
             NavigateFooter(
-                onPreviousClick = { index = 0},
-                onNextClick = { index = 1},
+                onPreviousClick = {
+                    if (index > 0) index-- else index = artworks.size-1
+                                  },
+                onNextClick = {
+                    if (index < artworks.size-1) index++ else index = 0
+                              },
                 Modifier.fillMaxWidth())
         }
     }
