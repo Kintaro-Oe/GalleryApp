@@ -46,14 +46,36 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GalleryTheme {
-                GalleryApp()
+                GalleryApp(artworks)
             }
         }
     }
 }
 
+data class ArtworkIds(
+    val imageResourceID: Int,
+    val titleResourceID: Int,
+    val artistResourceID: Int,
+    val yearResourceID: Int
+)
+
+val artworks = listOf(
+    ArtworkIds(
+        imageResourceID = R.drawable.artwork_1,
+        titleResourceID = R.string.artwork_1_title,
+        artistResourceID = R.string.artwork_1_artist,
+        yearResourceID = R.string.artwork_1_year,
+    ),
+    ArtworkIds(
+        imageResourceID = R.drawable.artwork_2,
+        titleResourceID = R.string.artwork_2_title,
+        artistResourceID = R.string.artwork_2_artist,
+        yearResourceID = R.string.artwork_2_year,
+    )
+)
+
 @Composable
-fun GalleryApp(modifier: Modifier = Modifier) {
+fun GalleryApp(artworks: List<ArtworkIds>, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier
             .background(MaterialTheme.colorScheme.surface)
@@ -61,7 +83,7 @@ fun GalleryApp(modifier: Modifier = Modifier) {
             .safeDrawingPadding()
     ) {
         Column {
-            var page by remember { mutableIntStateOf(1) }
+            var index by remember { mutableIntStateOf(0) }
 
             Column(
                 modifier = modifier
@@ -74,32 +96,21 @@ fun GalleryApp(modifier: Modifier = Modifier) {
                     text = stringResource(R.string.header),
                     modifier = Modifier
                         .fillMaxWidth(),
-//                    .padding(vertical = 16.dp),
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
                     fontSize = 36.sp,
                     fontFamily = FontFamily.Cursive
                 )
-
-                when(page) {
-                    1 -> Artwork(
-                        imageResourceID = R.drawable.artwork_1,
-                        titleResourceID = R.string.artwork_1_title,
-                        artistResourceID = R.string.artwork_1_artist,
-                        yearResourceID = R.string.artwork_1_year,
-                    )
-                    2 -> Artwork(
-                        imageResourceID = R.drawable.artwork_2,
-                        titleResourceID = R.string.artwork_2_title,
-                        artistResourceID = R.string.artwork_2_artist,
-                        yearResourceID = R.string.artwork_2_year,
-                    )
-                }
-
+                Artwork(
+                    imageResourceID = artworks[index].imageResourceID,
+                    titleResourceID = artworks[index].titleResourceID,
+                    artistResourceID = artworks[index].artistResourceID,
+                    yearResourceID = artworks[index].yearResourceID,
+                )
             }
             NavigateFooter(
-                onPreviousClick = { page = 1 },
-                onNextClick = { page = 2 },
+                onPreviousClick = { index = 0},
+                onNextClick = { index = 1},
                 Modifier.fillMaxWidth())
         }
     }
@@ -225,6 +236,6 @@ fun NavigateButton(onClick: () -> Unit, text: String, modifier: Modifier = Modif
 @Composable
 fun GalleryAppPreview() {
     GalleryTheme {
-        GalleryApp()
+        GalleryApp(artworks)
     }
 }
